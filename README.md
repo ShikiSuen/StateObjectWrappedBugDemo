@@ -1,5 +1,7 @@
 # SwiftUI 某个可能是 Bug 的地方
 
+See [README_EN.md](./README_EN.md) for English description of this repo.
+
 ## 前言
 
 发现一个颇有意思的：
@@ -20,7 +22,7 @@
 打比方说这样改设计好了（我不知道有没有更好的方案）：
 首先，弄一个 ObservableObject （起名为 SettingsPool），里面的成员参数都是 AppStorage（自然会包括上文A窗B窗用到的那个 UserDefaults 参数）。
 
-然后呢，A窗的 SwiftUI 根视图使用 `@StateObject var prefPool: SettingsPool = .init()`。
+然后呢，A窗的 SwiftUI 根视图使用 `@StateObject var prefPool: SettingsPool = .init()`、再使用 `.environmentObject(prefPool)` 传递给子视图。
 
 接下来，A窗的所有在这个根视图之下的视图都使用 `@EnvironmentObject var prefPool: SettingsPool` 存取这个物件，且删掉上文最开始提到的「就地开了个」的参数、改用新的 EnvironmentObject。
 
