@@ -5,7 +5,7 @@
 import SwiftUI
 
 struct ContentView: View {
-  @EnvironmentObject var prefPool: SettingsPool
+  @StateObject var prefPool = SettingsPool()
   var body: some View {
     VStack {
       Toggle("114 514 1919810 (SwiftUI)", isOn: $prefPool.the114514)

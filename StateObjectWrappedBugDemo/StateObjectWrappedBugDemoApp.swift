@@ -6,10 +6,9 @@ import SwiftUI
 
 @main
 struct StateObjectWrappedBugDemoApp: App {
-  @StateObject var prefPool = SettingsPool()
   var body: some Scene {
     WindowGroup {
-      ContentView().environmentObject(prefPool).fixedSize()
+      ContentView().fixedSize()
     }.windowResizability(.contentSize)
   }
 }
