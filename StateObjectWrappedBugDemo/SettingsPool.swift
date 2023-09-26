@@ -4,7 +4,14 @@
 
 import SwiftUI
 
-public class SettingsPool: NSObject, ObservableObject {
-  @AppStorage(wrappedValue: true, "114514")
-  public var the114514: Bool
+public class SettingsPool: ObservableObject {
+  @Published var the114514: Bool = true
+
+  func set(value: Bool) {
+    UserDefaults.standard.setValue(value, forKey: "114514")
+  }
+
+  func getValue() -> Bool {
+    UserDefaults.standard.bool(forKey: "114514")
+  }
 }

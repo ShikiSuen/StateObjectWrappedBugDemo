@@ -7,9 +7,20 @@ import SwiftUI
 @main
 struct StateObjectWrappedBugDemoApp: App {
   @StateObject var prefPool = SettingsPool()
+
+  @AppStorage(wrappedValue: true, "114514")
+  public var the114514: Bool
+
   var body: some Scene {
     WindowGroup {
-      ContentView().environmentObject(prefPool).fixedSize()
+      ContentView(isOn: $the114514)
+        .environmentObject(prefPool)
+        .fixedSize()
+
+      /// Apprach 2:  Observing the publushed value from SettingPool
+//                .onChange(of: prefPool.the114514) { newValue in
+//                    self.the114514 = newValue
+//                }
     }.windowResizability(.contentSize)
   }
 }
